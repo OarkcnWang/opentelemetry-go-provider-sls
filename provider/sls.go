@@ -22,7 +22,6 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/stdout/stdoutmetric"
-	"go.opentelemetry.io/otel/metric/global"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 	"os"
 	"strings"
@@ -309,7 +308,7 @@ func (c *Config) initMetric(metricsExporter metric.Exporter, stop func()) error 
 	meterProvider := metric.NewMeterProvider(
 		metric.WithReader(reader),
 		metric.WithResource(c.Resource))
-	global.SetMeterProvider(meterProvider)
+	otel.SetMeterProvider(meterProvider)
 
 	// 默认集成主机基础指标
 	if err := host.Start(host.WithMeterProvider(meterProvider)); err != nil {
