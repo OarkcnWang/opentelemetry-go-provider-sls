@@ -1,4 +1,4 @@
-module github.com/aliyun-sls/opentelemetry-go-provider-sls
+module github.com/OarkcnWang/opentelemetry-go-provider-sls
 
 go 1.18
 
